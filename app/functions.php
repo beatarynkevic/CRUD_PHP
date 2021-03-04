@@ -17,7 +17,7 @@ function writeData(array $data) : void
     file_put_contents(DIR.'data/boxes.json', $data);
 }
 
-function getBox(int $id) : ?array
+function getBox(int $id) : ?array //grazina dezes (masyvo pavidalu) info
 {
     foreach(readData() as $box) {
         if($box['id'] == $id) {
@@ -34,6 +34,34 @@ function create(int $count) : void
     $box = ['id' => $id, 'banana' => $count];
     $boxes[] = $box;
     writeData($boxes);
+}
+function update(int $id, int $count) : void 
+{
+    $boxes = readData(); //nuskaitom bananau dezes
+    $box = getBox($id); //paimu ta deze kurios redaguoju
+    if(!$box) {
+        return;
+    }
+    $box['banana'] = $count;
+    deletBox($id);
+    $boxes = readData();
+
+    $boxes[] = $box; //naujos dezes idejimas
+    writeData($boxes);
+}
+
+function deletBox(int $id) : void
+{
+    $boxes = readData();
+
+    foreach($boxes as $key => $box) {
+        if($box['id'] == $id) {
+            unset($boxes[$key]);
+            writeData($boxes);
+            return;
+        }
+    }
+
 }
 
 function getNextId() : int

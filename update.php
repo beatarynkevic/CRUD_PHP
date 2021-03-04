@@ -2,16 +2,25 @@
 require __DIR__.'/bootstrap.php'; //kodas bendras visiems
 //POST scenarijus
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $id = $_GET['id'] ?? 0;
+    $id = (int) $id;
+
     $bananas = $_POST['count'] ?? 0;
     $bananas = (int) $bananas;
-    create($bananas); //sukuria
+    update($id, $bananas); //sukuria
     header('Location:'. URL);
     die;
 }
 
 //GET scenarijus
 if($_SERVER['REQUEST_METHOD'] == 'GET') {
-
+    $id = $_GET['id'] ?? 0;
+    $id = (int) $id;
+    $box = getBox($id);
+    if(!$box) {
+        header('Location:'.URL);
+        die;
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -27,8 +36,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     <a href="<?= URL ?>create.php">Create</a>
     <a href="<?= URL ?>">Index</a>
 
-<form action="<?= URL ?>update.php" method="post">
-    <input type="text" name="count">
+<form action="<?= URL ?>update.php?id=<?= $box['id'] ?>/" method="post">
+    <input type="text" value="<?= $box['banana'] ?>" name="count">
     <button type="submit">Update</button>
 </form>
 
