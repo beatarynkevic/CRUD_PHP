@@ -20,6 +20,8 @@ require __DIR__.'/bootstrap.php'; //kodas bendras visiems
             <span> ID: <?= $box['id'] ?> </span>
             <span> Count: <?= $box['banana'] ?> </span>
             <a href="<?= URL ?>update.php?id=<?= $box['id'] ?>">EDIT</a>
+            <form action="<?= URL ?>delete.php?id=<?= $box['id'] ?>" method="post">
+            <button style="display:block;" type="submit">DELETE</button>
         </li>
     <?php endforeach ?>
     </ul>

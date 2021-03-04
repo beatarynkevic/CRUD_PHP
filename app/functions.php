@@ -43,14 +43,14 @@ function update(int $id, int $count) : void
         return;
     }
     $box['banana'] = $count;
-    deletBox($id);
+    deleteBox($id);
     $boxes = readData();
 
     $boxes[] = $box; //naujos dezes idejimas
     writeData($boxes);
 }
 
-function deletBox(int $id) : void
+function deleteBox(int $id) : void
 {
     $boxes = readData();
 
