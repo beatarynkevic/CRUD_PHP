@@ -1,8 +1,8 @@
 
 document.querySelector('[type=button]').addEventListener('click', () => {
+    const count = document.querySelector('#count').value;
     axios.post(uriPAth + 'api/create/', {
-        firstName: 'Fred',
-        lastName: 'Flintstone'
+        count: count;
     })
         .then(function (response) {
             console.log(response);
