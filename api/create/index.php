@@ -23,6 +23,14 @@ foreach(readData() as $box) : ?>
 
 $page = ob_get_contents();
 
-// this returns null if not valid json
-_d(json_decode($rawData, 1), 'json');
+ob_end_clean();// trinam ir naikinam buferi
+header('Content-Type: application/json');
+$answer = ['msg' => 'OK', 'page' => $page];
+echo json_encode($answer);
+
+
+
+
+
+_d($_POST, 'alio post');
 ?>
