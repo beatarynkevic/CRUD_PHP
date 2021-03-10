@@ -12,6 +12,8 @@ _d($uri);
 //ROUTING
 if('' == $uri[0]) {
     (new BananaConstructor)->index();
+} elseif (){
+
 }
 
 

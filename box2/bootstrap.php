@@ -10,6 +10,8 @@ define('DIR', __DIR__.'/');
 
 
 require DIR.'app/BananaConstructor.php';
+require DIR.'app/Json.php';
+require DIR.'app/Box.php';
 
 
 _d($_SESSION, 'SESIJA--->');
