@@ -1,4 +1,4 @@
-<!-- jis visur pasileis, pirmaiausiai pasileis visur -->
+<!-- visur pasileis-->
 <?php
 session_start();
 
@@ -9,9 +9,9 @@ define('DIR', __DIR__.'/');
 
 
 
-require DIR.'app/BananaConstructor.php';
+require DIR.'app/BananaController.php';
 require DIR.'app/Json.php';
 require DIR.'app/Box.php';
 
 
-_d($_SESSION, 'SESIJA--->');
+// _d($_SESSION, 'SESIJA--->');

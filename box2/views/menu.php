@@ -1,1 +1,1 @@
-<a href="<?= URL ?>create.php">Create</a>
+<a href="<?= URL ?>create">Create</a>

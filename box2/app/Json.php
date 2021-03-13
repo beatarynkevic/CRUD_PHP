@@ -3,20 +3,21 @@
 class Json {
 
     private static $jsonObj;
+
     private $data;
 
-    
     public static function getDB()
     {
         return self::$jsonObj ?? self::$jsonObj = new self;
     }
+
 
     private function __construct()
     {
         if (!file_exists(DIR.'data/boxes.json')) {// pirmas kartas
             $data = json_encode([]);
             file_put_contents(DIR.'data/boxes.json', $data);
-        } 
+        }
         $data = file_get_contents(DIR.'data/boxes.json');
         $this->data = json_decode($data);
     }
@@ -25,6 +26,7 @@ class Json {
     {
         file_put_contents(DIR.'data/boxes.json', json_encode($this->data));
     }
+
 
     public function readData() : array
     {
@@ -36,34 +38,38 @@ class Json {
         $this->data = json_encode($data);
     }
 
-    public function getBox(int $id) : ?array //grazina dezes (masyvo pavidalu) info
+    public function getBox(int $id) : ?object
     {
-        foreach(readData() as $box) {
-            if($box['id'] == $id) {
+        foreach($this->data as $box) {
+            if ($box->id== $id) {
                 return $box;
             }
         }
         return null;
     }
 
-    public function store(Box $box) : void 
+    public function store(Box $box) : void
     {
         $id = $this->getNextId();
-        $box->id= $id;
+        $box->id = $id;
         $this->data[] = $box;
-
     }
 
-    public function update(int $id, int $count) : void 
+    // public function update(object $box) : void
+    // {
+    //     foreach($this->data as $key => $box) {
+    //         if ($box->id== $id) {
+    //             $this->data[$key] = $box;
+    //             return;
+    //         }
+    //     }
+    // }
+
+    public function update(object $updateBox) : void
     {
-        $box = $this->getBox($id);
-        if(!$box) {
-            return;
-        }
         foreach($this->data as $key => $box) {
-            if($box['id'] == $id) {
-                $box = ['id' => $id, 'banana' => $count];
-                $this->data[$key] = $box;
+            if ($box->id== $updateBox->id) {
+                $this->data[$key] = $updateBox;
                 return;
             }
         }
@@ -72,8 +78,17 @@ class Json {
     public function delete(int $id) : void
     {
         foreach($this->data as $key => $box) {
-            if($box['id'] == $id) {
+            if ($box->id== $id) {
                 unset($this->data[$key]);
+                // normalizuojam masyva iki normalaus masyvo be "skyliu"
+                $this->data = array_values($this->data);
+                //
+                /*
+                pvz indeksai pries trynima 0 1 2 3 4
+                trinam 2 elementa
+                indeksai po trynimo 0 1 3 4
+                indeksai po normalizavimo 0 1 2 3
+                */
                 return;
             }
         }
@@ -93,4 +108,5 @@ class Json {
         file_put_contents(DIR.'data/indexes.json', $index);
         return $id;
     }
+
 }
