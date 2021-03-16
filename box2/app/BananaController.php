@@ -5,7 +5,13 @@ class BananaController {
     public function index()
     {
         $pageTitle = 'Banana Boxes';
-        $boxes = Json::getDB()->readData();
+        $randDigit = Helper::getRandom();
+        // $boxes = Json::getDB()->readData();
+
+        $boxes = Json::getDB()->readAndSortData('banana');
+
+        //$boxes = Box::orderByCount($boxes); //specifinis box sorrtas
+
         require DIR.'views/index.php';
     }
 

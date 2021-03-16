@@ -33,6 +33,16 @@ class Json {
         return $this->data;
     }
 
+    public function readAndSortData($sortBy) : array
+    {
+        usort($this->data,
+        function($a, $b) use ($sortBy){
+            return $a->$sortBy <=> $b->$sortBy;
+        });
+
+        return $this->data;
+    }
+
     public function writeData(array $data) : void
     {
         $this->data = json_encode($data);

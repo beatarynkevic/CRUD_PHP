@@ -30,4 +30,3 @@ elseif ('delete' == $uri[0]) {
 
 
 echo 'DURYS';
-?>
