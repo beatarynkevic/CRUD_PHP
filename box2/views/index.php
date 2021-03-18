@@ -1,8 +1,6 @@
-<!-- atsakingas uz indekso atvaizdavima, atvaizuos bananu deze -->
-
+<!-- atsakingas uz indekso atvaizdavima, atvaizduos bananu deze -->
 
 <?php
-require_once '../bootstrap.php';
 require DIR.'views/top.php';
 ?>
 <h1><?= $pageTitle ?></h1>
