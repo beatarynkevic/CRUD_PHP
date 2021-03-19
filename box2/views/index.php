@@ -11,9 +11,9 @@ require DIR.'views/top.php';
 <ul id="list">
     <?php foreach($boxes as $box) : ?>
     <li style="padding: 10px;">
-        <span> <?= Box::getRandom() ?></span>
+        <span> <?= $box->id ?></span>
         <span>ID: <?= $box->id ?></span>
-        <span>Count: <?= $box->bannana ?></span>
+        <span>Count: <?= $box->banana ?></span>
         <a class="btn btn-outline-success" href="<?= URL ?>edit/<?= $box->id ?>">EDIT</a>
         <form style="display:inline-block;" action="<?= URL ?>delete/<?= $box->id ?>" method="post">
             <button type="submit" class="btn btn-outline-danger">DELETE</button>
@@ -21,5 +21,5 @@ require DIR.'views/top.php';
     </li>
     <?php endforeach ?>
 </ul>
-
+    
 <?php require DIR.'views/bottom.php'; ?>

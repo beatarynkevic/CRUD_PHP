@@ -8,6 +8,8 @@ _d(str_replace(INSTALL_DIR, '', $_SERVER['REQUEST_URI']));
 _d($uri);
 
 
+//duris yra vieta per kuria patenkam i aplikacija
+
 //ROUTING
 if ('' == $uri[0]) {
     (new BananaController)->index();

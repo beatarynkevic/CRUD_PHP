@@ -26,7 +26,7 @@ class BananaController {
         $box = new Box;
         $box->banana =(int) ($_POST['count'] ?? 0);
 
-        $Json::getDB()->store($box); // sukuria
+        Json::getDB()->store($box); // sukuria
         header('Location: '.URL);
         die;
     }
@@ -40,7 +40,7 @@ class BananaController {
     public function update(int $id)
     {
         $box = Json::getDB()->getBox($id);
-        $box->bannana = (int) ($_POST['count'] ?? 0);
+        $box->banana = (int) ($_POST['count'] ?? 0);
         Json::getDB()->update($box); // updeitina
         header('Location: '.URL);
         die;

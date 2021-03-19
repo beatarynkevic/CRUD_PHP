@@ -11,6 +11,7 @@ require __DIR__.'/bootstrap.php'; //kodas bendras visiems
     <script> const uriPAth = "<?= URL?>";</script>
     <script src="<?= URL?>app.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <title>Banana Boxes</title>
 </head>
 <body>
@@ -19,15 +20,21 @@ require __DIR__.'/bootstrap.php'; //kodas bendras visiems
 
     <ul id="list">
     <?php foreach(readData() as $box) : ?>
-        <li>
+        <li style="padding: 10px;">
             <span> ID: <?= $box['id'] ?> </span>
             <span> Count: <?= $box['banana'] ?> </span>
-            <a href="<?= URL ?>update.php?id=<?= $box['id'] ?>">EDIT</a>
-            <form action="<?= URL ?>delete.php?id=<?= $box['id'] ?>" method="post">
-            <button style="display:block;" type="submit">DELETE</button>
+            <a class="btn btn-outline-success" href="<?= URL ?>update.php?id=<?= $box['id'] ?>">EDIT</a>
+            <form display="inline:block;" action="<?= URL ?>delete.php?id=<?= $box['id'] ?>" method="post">
+            <button class="btn btn-outline-danger" type="submit">DELETE</button>
         </li>
     <?php endforeach ?>
     </ul>
+
+    <div style="padding: 26px; border: 1px solid black; margin: 30px;">
+    Bananas in box: <input type="text" id="count">
+    <br><br>
+    <button class="btn btn-outline-info" type="button">Create</button>
+    </div>
 
 </body>
 </html>
